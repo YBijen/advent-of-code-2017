@@ -1,5 +1,7 @@
 import io;
 
+highestValue = 0;
+
 def CheckAndOrCreateKey(key):
 	if(dict.get(key) == None):
 		dict[key] = 0;
@@ -33,11 +35,14 @@ with open("input.txt") as txt:
 				dict[splLine[0]] = dict.get(splLine[0]) + int(splLine[2])
 			else: # then decrease
 				dict[splLine[0]] = dict.get(splLine[0]) - int(splLine[2])
+			# Below is for part 2
+			if(int(dict.get(splLine[0])) > highestValue): highestValue = int(dict.get(splLine[0]))
 	txt.close()
-	highest = 0;
-	for value in dict:
-		if(int(dict[value]) > highest): highest = int(dict[value])
 
-	print('The highest number is: ', highest)
+	# Below was for part 1
+	#for value in dict:
+	#	if(int(dict[value]) > highestValue): highestValue = int(dict[value])
+
+	print('The highest number is: ', highestValue)
 
 

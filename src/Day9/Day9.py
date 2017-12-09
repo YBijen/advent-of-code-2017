@@ -3,18 +3,17 @@ import re
 import sys
 
 with open("input.txt") as file:
-    points = 0
-    tags = 0
-    garbage = False
-    garbageCount = 0
-    skip = False
+    points, tags, garbageCount, open, close = (0, 0, 0, 0, 0)
+    garbage, skip = (False, False)
     for char in file.read():
         if skip:
             skip = False
             continue
         elif char == '{' and garbage == False:
+            open += 1
             tags += 1
         elif char == '}' and garbage == False:
+            close +=1
             points += tags
             tags -= 1
         elif char == '!':
@@ -28,4 +27,5 @@ with open("input.txt") as file:
 
     print('Amount of points: ', points)
     print('Amount of non-canceled characters in the garbage: ',  garbageCount)
+    print('Open Tags: ', open, " - Close Tags: ", close)
     file.close()

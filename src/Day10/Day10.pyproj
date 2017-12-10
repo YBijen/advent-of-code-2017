@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>9c4a39ae-6230-4808-a1e2-16a74576b28c</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Day10.py</StartupFile>
+    <StartupFile>Day10.Part2.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,6 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Day10.Part2.py" />
     <Compile Include="Day10.py" />
   </ItemGroup>
   <ItemGroup>

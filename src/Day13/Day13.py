@@ -14,6 +14,12 @@ for line in open('input.txt').readlines():
     if idx > max_idx:
         max_idx = idx
 
+#input_list = {}
+#input_list[0] = 3
+#input_list[1] = 2
+#input_list[4] = 4
+#input_list[6] = 4
+
 # Create full list
 for idx in range(0, max_idx):
     values[idx] = input_list.get(idx) or 0
@@ -25,12 +31,33 @@ def get_current_pos(picoSec):
     elif depth > 0:
         return picoSec % depth
 
+def is_pos_safe(range, picoSec):
+    depth = (input_list.get(range) - 1) * 2
+    if depth <= 0:
+        return True
+    elif depth > 0:
+        return (picoSec % depth) != 0
+
 for picoSec in range(0, max_idx):
     if get_current_pos(picoSec) == 0:
-        caught[picoSec] = values[picoSec]
+        caught[picoSec] = input_list[picoSec]
 
 for c in caught:
     total_severity += c * caught[c]
 
-print('The total severity of the trip is: ', total_severity)
+searching = True
+delay = 0;
+while(searching):
+    all_inp = True
+    for inp in input_list:
+        if not is_pos_safe(inp, delay + inp):
+            all_inp = False
+            break;
+    if all_inp:
+        searching = False
+    else:
+        delay += 1
 
+
+print('The total severity of the trip is: ', total_severity)
+print('The total required delay before passing safely is: ', delay)

@@ -2,15 +2,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>9c4a39ae-6230-4808-a1e2-16a74576b28c</ProjectGuid>
+    <ProjectGuid>b99d0591-f1f4-4667-bd20-bae8b3d46f4e</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Day10.Part2.py</StartupFile>
+    <StartupFile>Day14.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>Day10</Name>
-    <RootNamespace>Day10</RootNamespace>
+    <Name>Day14</Name>
+    <RootNamespace>Day14</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,9 +21,8 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Day10.Part2.Function.py" />
-    <Compile Include="Day10.Part2.py" />
-    <Compile Include="Day10.py" />
+    <Compile Include="Day14.Part2.py" />
+    <Compile Include="Day14.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assignment.txt" />

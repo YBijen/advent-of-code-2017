@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>b99d0591-f1f4-4667-bd20-bae8b3d46f4e</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Day14.py</StartupFile>
+    <StartupFile>Day14.Part2.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>

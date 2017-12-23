@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Day18,Part2.py" />
+    <Compile Include="Day18.Part2.py" />
     <Compile Include="Day18.py" />
     <Compile Include="Day18.Solution.py">
       <SubType>Code</SubType>

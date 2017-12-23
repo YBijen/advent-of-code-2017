@@ -1,8 +1,14 @@
 
 import io
 
-instructions = open('input.txt').readlines()
-#instructions = open('test_input.txt').readlines()
+# Process Input
+instructions = []
+file_name = 'test_input.txt'
+file_name = 'input.txt'
+f=open(file_name,'r')
+for line in f.readlines():
+    instructions.append(line.split('\n')[0])
+f.close()
 
 registers = [{}, {}]
 queues = [[], []]
@@ -21,13 +27,12 @@ for instruction in instructions:
             registers[0][x_key] = 0
     if registers[1].get(x_key) == None:
         try:
-            v = int(x_key)
+            int(x_key)
         except ValueError:
-            registers[1][x_key] = 0
-        value = 0
-        if x_key == 'p':
-            value = 1
-        registers[1][x_key] = value
+            value = 0
+            if x_key == 'p':
+                value = 1
+            registers[1][x_key] = value
 
 def get_value(i, key):
     try:
@@ -76,7 +81,8 @@ def process_instructions(program_index):
             else:
                 status[program_index] = 'waiting'
 
-        idx[program_index] += 1
+        if status[program_index] == 'ok':
+            idx[program_index] += 1
 
         if idx[program_index] >= len(instructions) or idx[program_index] < 0:
             status[program_index] = 'done'

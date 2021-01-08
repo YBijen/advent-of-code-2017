@@ -73,19 +73,17 @@ namespace Day21_cs
             return image.ToString();
         }
 
-
         private static List<string> SplitImageIntoSubImages(string image, int imageSize, int subImageSize)
         {
             var subImageLength = (int)Math.Pow(subImageSize, 2);
             var totalSubImages = (image.Length / subImageLength);
             var subImagesPerLine = (int)Math.Sqrt(totalSubImages);
 
-            var subImages = Enumerable.Range(0, totalSubImages).Select(i => "").ToList();
+            var subImages = Enumerable.Range(0, totalSubImages).Select(i => new StringBuilder()).ToList();
 
             for (var y = 0; y < imageSize; y++)
             {
                 var subImageY = (int)(y / subImageSize);
-                var yToGet = y % subImageSize;
 
                 for (var x = 0; x < imageSize; x++)
                 {
@@ -93,13 +91,12 @@ namespace Day21_cs
 
                     var subImageIndex = CalcIndexForRotation(totalSubImages, subImagesPerLine, 0, subImageX, subImageY);
 
-                    var xToGet = x % subImageSize;
-
                     var indexToGet = CalcIndexForRotation(image.Length, imageSize, 0, x, y);
-                    subImages[subImageIndex] += image[indexToGet];
+                    subImages[subImageIndex].Append(image[indexToGet]);
                 }
             }
-            return subImages;
+
+            return subImages.Select(si => si.ToString()).ToList();
         }
 
         private static List<string> ConvertImageListAccordingToRuleBook(List<string> imageList) =>

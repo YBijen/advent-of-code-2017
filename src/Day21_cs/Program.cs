@@ -14,16 +14,13 @@ namespace Day21_cs
 
         static void Main(string[] args)
         {
-            AssertPartOne();
-            SolvePartOne();
+            AssertLogic();
+            Console.WriteLine($"Result part 1: {SolvePartOne()}");
+            Console.WriteLine($"Result part 2: {SolvePartTwo()}");
         }
 
-        private static void SolvePartOne()
-        {
-            var resultImage = PerformIterations(5);
-            var activePixels = resultImage.Count(c => c == '#');
-            Console.WriteLine($"Result part 1: {activePixels}");
-        }
+        private static int SolvePartOne() => PerformIterations(5).Count(c => c == '#');
+        private static int SolvePartTwo() => PerformIterations(18).Count(c => c == '#');
 
         private static string PerformIterations(int iterations)
         {
@@ -72,7 +69,6 @@ namespace Day21_cs
                     var indexToGet = CalcIndexForRotation(subImageLength, subImageSize, 0, xToGet, yToGet);
                     image.Append(subImage[indexToGet]);
                 }
-
             }
             return image.ToString();
         }
@@ -80,30 +76,30 @@ namespace Day21_cs
 
         private static List<string> SplitImageIntoSubImages(string image, int imageSize, int subImageSize)
         {
-            var subImageList = new List<string>();
-
             var subImageLength = (int)Math.Pow(subImageSize, 2);
             var totalSubImages = (image.Length / subImageLength);
-            var squaresPerLine = (int)Math.Sqrt(totalSubImages);
+            var subImagesPerLine = (int)Math.Sqrt(totalSubImages);
 
-            for (var i = 0; i < totalSubImages; i++)
+            var subImages = Enumerable.Range(0, totalSubImages).Select(i => "").ToList();
+
+            for (var y = 0; y < imageSize; y++)
             {
-                var subImage = new StringBuilder();
-                for (var y = 0; y < subImageSize; y++)
+                var subImageY = (int)(y / subImageSize);
+                var yToGet = y % subImageSize;
+
+                for (var x = 0; x < imageSize; x++)
                 {
-                    var yModifier = (i / squaresPerLine) * squaresPerLine;
-                    for (var x = 0; x < subImageSize; x++)
-                    {
-                        var xModifier = (i % squaresPerLine) * squaresPerLine;
-                        var getValueAtIndex = CalcIndexForRotation(image.Length, imageSize, 0, (x + xModifier), (y + yModifier));
-                        subImage.Append(image[getValueAtIndex]);
-                    }
+                    var subImageX = (int)(x / subImageSize);
+
+                    var subImageIndex = CalcIndexForRotation(totalSubImages, subImagesPerLine, 0, subImageX, subImageY);
+
+                    var xToGet = x % subImageSize;
+
+                    var indexToGet = CalcIndexForRotation(image.Length, imageSize, 0, x, y);
+                    subImages[subImageIndex] += image[indexToGet];
                 }
-
-                subImageList.Add(subImage.ToString());
             }
-
-            return subImageList;
+            return subImages;
         }
 
         private static List<string> ConvertImageListAccordingToRuleBook(List<string> imageList) =>
@@ -182,7 +178,7 @@ namespace Day21_cs
             };
         }
 
-        private static void AssertPartOne()
+        private static void AssertLogic()
         {
             CreateRuleBook(debug: true);
 
@@ -207,6 +203,9 @@ namespace Day21_cs
             Assert.AreEqual(expectedResultAfterTwoIterations, resultAfterTwoIterations);
 
             CreateRuleBook(debug: false);
+
+            Assert.AreEqual(158, SolvePartOne());
+            Assert.AreEqual(2301762, SolvePartTwo());
         }
     }
 }
